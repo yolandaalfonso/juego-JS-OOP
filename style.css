@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-color: #b8b8b8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  #game-container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 20px auto;
+    border: 10px solid #6d6d6d;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 30px;
+    background-image: url('img/749.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .personaje {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('img/dinosaurio.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-color: #07a07c;
+    border-radius: 50%;
+    border: 5px solid #07a050;*/
+  }
+  
+  .moneda {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('img/helecho.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-color: gold;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255, 223, 0, 0.8);*/
+  }
+
+  .meteorito {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('img/meteorito.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
