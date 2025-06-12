@@ -28,6 +28,12 @@ class Game {
             this.container.appendChild(meteorito.element);
         }
 
+        setInterval(() => {
+            const meteorito = new Meteorito();
+            this.meteoritos.push(meteorito);
+            this.container.appendChild(meteorito.element);
+        }, 3000); // un nuevo meteorito aparece cada 3 segundos
+
     }
     agregarEventos(){
         window.addEventListener("keydown", (e) => this.personaje.mover(e));
@@ -64,12 +70,12 @@ class Game {
         this.vidas += cambio;
 
         // Actualizar en el DOM
-        this.vidasElement.textContent = `Vidas: ${this.vidas}`;
+        this.vidasElement.textContent = "Vidas: " + "♥️".repeat(this.vidas);
 
         // Si te quedas sin vidas, termina el juego
         if (this.vidas <= 0) {
-            alert("¡Game Over!");
-            location.reload(); // reinicia el juego (puedes personalizarlo)
+            alert("¡Extinción!☄️🦕 Inténtalo de nuevo 🙂");
+            location.reload(); // reinicia el juego
         }
     }
 
@@ -82,7 +88,7 @@ class Personaje {
         this.y = 300;
         this.width = 50;
         this.height = 50;
-        this.velocidad = 10;
+        this.velocidad = 25;
         this.saltando = false;
         this.element = document.createElement("div");
         this.element.classList.add("personaje");
@@ -90,10 +96,21 @@ class Personaje {
     }
 
     mover(evento) {
+
+        const desplazamientoMaximo = 800 - this.width; 
+
         if(evento.key === "ArrowRight") {
             this.x += this.velocidad;
+
+            if (this.x > desplazamientoMaximo) {
+                this.x = desplazamientoMaximo;
+            }
         } else if(evento.key === "ArrowLeft") {
             this.x -= this.velocidad;
+
+            if(this.x < 0) {
+                this.x = 0;
+            }
         } else if (evento.key === "ArrowUp" && !this.saltando) {
             this.saltar(); 
         }
