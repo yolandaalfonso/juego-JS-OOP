@@ -10,6 +10,15 @@ class Game {
         this.agregarEventos();
         this.puntosElement = document.getElementById("puntos");
         this.vidasElement = document.getElementById("vidas");
+
+        // Referencias a la música
+        this.musicaJuego = document.getElementById("musica-juego");
+        this.musicaPerder = document.getElementById("musica-perder");
+        this.musicaComer = document.getElementById("musica-comer");
+        this.musicaMeteorito = document.getElementById("musica-meteorito");
+
+        // Comenzar música de fondo
+        this.musicaJuego.play();
     }
 
     crearEscenario(){
@@ -47,6 +56,9 @@ class Game {
                     this.container.removeChild(moneda.element);
                     this.monedas.splice(index,1)
                     this.actualizarPuntuacion(10);
+                    //Cada vez que colisiona suena el audio
+                    this.musicaComer.currentTime = 0;  // reinicia el audio
+                    this.musicaComer.play(); 
                 }
             })
 
@@ -55,6 +67,9 @@ class Game {
                     this.container.removeChild(meteorito.element);
                     this.meteoritos.splice(index, 1)
                     this.actualizarVida(-1);
+                    //Cada vez que colisiona suena el audio
+                    this.musicaMeteorito.currentTime = 0;  // reinicia el audio
+                    this.musicaMeteorito.play(); 
                 }
             })
 
@@ -74,6 +89,10 @@ class Game {
 
         // Si te quedas sin vidas, termina el juego
         if (this.vidas <= 0) {
+            //Parar música juego y reproducir música perder
+            this.musicaJuego.pause();
+            this.musicaPerder.play();
+
             alert("¡Extinción!☄️🦕 Inténtalo de nuevo 🙂");
             location.reload(); // reinicia el juego
         }
