@@ -18,7 +18,35 @@ class Game {
         this.musicaMeteorito = document.getElementById("musica-meteorito");
 
         // Comenzar música de fondo
-        this.musicaJuego.play();
+        //this.musicaJuego.play();
+
+        // Controles de audio del HTML
+        this.volumenControl = document.getElementById("volumen-juego");
+        this.muteControl = document.getElementById("mute-juego");
+
+        // Evento para cambiar volumen
+        this.volumenControl.addEventListener("input", (e) => {
+            this.musicaJuego.volume = parseFloat(e.target.value);
+                // Si marca volumen, no está en mute
+                if (this.musicaJuego.volume > 0 && this.musicaJuego.muted) {
+                    this.musicaJuego.muted = false;
+                    this.muteControl.checked = false;
+                }
+
+        });
+
+        // Evento para silenciar / activar sonido
+        this.muteControl.addEventListener("change", (e) => {
+            this.musicaJuego.muted = e.target.checked;
+        });
+
+        // Iniciar música al primer evento de teclado
+        window.addEventListener("keydown", () => {
+            if (this.musicaJuego.paused) {
+                this.musicaJuego.play();
+            }
+        }, { once: true });
+    
     }
 
     crearEscenario(){

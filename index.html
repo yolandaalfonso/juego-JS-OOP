@@ -15,6 +15,16 @@
     <audio id="musica-comer" src="audio/comer.mp3"></audio>
     <audio id="musica-perder" src="audio/perder.mp3"></audio>
     <audio id="musica-meteorito" src="audio/meteorito.mp3"></audio>
+
+    <div id="controles-audio">
+        <label for="volumen-juego">Volumen:</label>
+        <input type="range" id="volumen-juego" min="0" max="1" step="0.01" value="0.2">
+      
+        <label for="mute-juego">
+          <input type="checkbox" id="mute-juego"> Silenciar
+        </label>
+    </div>
+      
     <script type="module" src="main.js"></script>
 </body>
 </html>
