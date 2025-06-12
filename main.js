@@ -16,9 +16,7 @@ class Game {
         this.musicaPerder = document.getElementById("musica-perder");
         this.musicaComer = document.getElementById("musica-comer");
         this.musicaMeteorito = document.getElementById("musica-meteorito");
-
-        // Comenzar música de fondo
-        //this.musicaJuego.play();
+        this.musicaGanar = document.getElementById("musica-ganar");
 
         // Controles de audio del HTML
         this.volumenControl = document.getElementById("volumen-juego");
@@ -107,6 +105,15 @@ class Game {
     actualizarPuntuacion(puntos) {
         this.puntuacion += puntos;
         this.puntosElement.textContent = `Puntos: ${this.puntuacion}`
+
+        if (this.puntuacion === 50) {
+            //Parar música juego y reproducir música ganar
+            this.musicaJuego.pause();
+            this.musicaGanar.play();
+
+            alert("¡Dino se ha salvado! ✨");
+            location.reload(); // reinicia el juego
+        }
     }
 
     actualizarVida(cambio) {
@@ -166,7 +173,7 @@ class Personaje {
 
     saltar() {
         this.saltando = true;
-        let alturaMaxima = this.y - 200;
+        let alturaMaxima = this.y - 250;
         const salto = setInterval( () => {
             if(this.y > alturaMaxima) {
                 this.y -=20;
