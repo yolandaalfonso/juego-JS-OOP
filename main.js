@@ -67,7 +67,7 @@ class Game {
             const meteorito = new Meteorito();
             this.meteoritos.push(meteorito);
             this.container.appendChild(meteorito.element);
-        }, 3000); // un nuevo meteorito aparece cada 3 segundos
+        }, 3000); // nuevo meteorito aparece cada 3 segundos
 
     }
     agregarEventos(){
@@ -112,7 +112,11 @@ class Game {
             this.musicaGanar.play();
 
             alert("¡Dino se ha salvado! ✨");
-            location.reload(); // reinicia el juego
+            
+            // Esperar 2 segundos antes de recargar
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
         }
     }
 
